@@ -1,26 +1,14 @@
 # OKX X Layer Skills Suite
 
-> **Skills Arena submission for the [X Layer Build X Hackathon](https://web3.okx.com/xlayer/build-x-hackathon)**
-
-*"Agents don't just assist — they build, trade, and compete."*
-
-## Overview
-
-A suite of three interoperable agent skills enabling autonomous trading, earning, and competing on X Layer. Built on OKX OnchainOS and Uniswap, these skills give AI agents everything they need to operate independently on-chain: research tokens, assess risk, execute trades, manage V3 liquidity positions, harvest fees, pay for services, and interact with other agents — all on X Layer's zero-gas L2.
+Three **fully independent** agent skills for autonomous on-chain trading, earning, and competing. Each skill works standalone — install only what you need, no cross-skill dependencies.
 
 ## Skills
 
 ### 1. `okx-trading` — Comprehensive On-Chain Trading
 
-The core skill covering the full trading lifecycle: 30+ CLI commands for token research, security scanning, market data, smart money tracking, DEX swap execution, DeFi yield farming, meme token trenches, portfolio management, wallet operations, and transaction broadcasting.
+The full trading lifecycle: 30+ CLI commands for token research, security scanning, market data, smart money tracking, DEX swap execution, DeFi yield farming, meme token trenches, portfolio management, wallet operations, and transaction broadcasting.
 
-| | |
-|---|---|
-| **Arena** | Skills Arena |
-| **Files** | 27 (SKILL.md + 23 references + 3 shared) |
-| **Dependencies** | OKX OnchainOS CLI (`onchainos`) |
-
-**Key capabilities:**
+**Capabilities:**
 - Token research & analysis: search, info, price-info, holders, liquidity, advanced-info
 - Security scanning: token-scan, dapp-scan, tx-scan, sig-scan, approvals
 - Market & signals: price, kline, portfolio PnL, smart money tracking, buy signals
@@ -33,15 +21,9 @@ The core skill covering the full trading lifecycle: 30+ CLI commands for token r
 
 ### 2. `okx-xlayer-agent` — Autonomous Agent on X Layer
 
-An automation framework for building autonomous agents on X Layer. Provides agent decision logic, monitoring loops, silent mode rules, risk limits, and four complete agent workflow patterns.
+An automation framework for building autonomous agents on X Layer. Provides agent decision logic, monitoring loops, silent mode rules, risk limits, and four complete agent workflow patterns — all leveraging X Layer's near-zero gas and 1-second finality.
 
-| | |
-|---|---|
-| **Arena** | Skills Arena (also targets **Most Active Agent** special prize) |
-| **Files** | 5 (SKILL.md + 1 reference + 2 shared + agents config) |
-| **Dependencies** | OKX OnchainOS CLI (`onchainos`) |
-
-**Key capabilities:**
+**Capabilities:**
 - **Sense → Decide → Act** loop architecture with mandatory security gates
 - Four agent patterns: DCA, Smart Money Follower, DeFi Auto-Compounder, X402 Self-Funding
 - Configurable risk parameters: per-trade risk, portfolio heat, daily limits, stop-losses
@@ -49,20 +31,15 @@ An automation framework for building autonomous agents on X Layer. Provides agen
 - WebSocket monitoring for real-time price and signal data
 - Silent mode for production agents (heartbeat logging, action-only output)
 - x402 payment integration for self-funding agent economics
+- Complete CLI reference for all 30+ onchainos commands used in agent loops
+- Full trading workflows, risk framework, and decision checklists included
 
 ### 3. `okx-uniswap` — Uniswap Protocol Integration for Agents
 
-Direct Uniswap protocol interaction for autonomous agents — V3 concentrated liquidity management, Trading API swaps, x402 payments, and LP rebalancing on X Layer and EVM chains. Targets the **Best Uniswap Integration** special prize.
+Direct Uniswap protocol interaction for autonomous agents — V3 concentrated liquidity management, Trading API swaps, x402 payments, and LP rebalancing on X Layer and EVM chains.
 
-| | |
-|---|---|
-| **Arena** | Skills Arena |
-| **Files** | 13 (SKILL.md + 7 references + 3 shared + agents config) |
-| **Dependencies** | OKX OnchainOS CLI + Uniswap Trading API + cast (Foundry) |
-| **Targets** | Best Uniswap Integration prize |
-
-**Key capabilities:**
-- **Swap execution**: OKX aggregator (best price) or Uniswap Trading API (direct protocol)
+**Capabilities:**
+- **Swap execution**: OKX aggregator (best price across 500+ DEXes) or Uniswap Trading API (direct protocol)
 - **V3 LP management**: mint, monitor, rebalance, collect fees — complete lifecycle via `cast` + OnchainOS
 - **X Layer LP advantage**: Rebalancing every 5 minutes costs ~$4.32/day vs. impractical on Ethereum
 - **Route comparison**: Quote on both OKX aggregator and Uniswap, pick best execution
@@ -83,11 +60,11 @@ Direct Uniswap protocol interaction for autonomous agents — V3 concentrated li
 │  │ okx-trading  │  │okx-xlayer-  │  │ okx-uniswap  │ │
 │  │              │  │   agent      │  │              │ │
 │  │ Research     │  │ Automation  │  │ V3 LP Mgmt   │ │
-│  │ Security     │  │ Framework   │  │ Trading API   │ │
-│  │ Market Data  │  │ Risk Gates  │  │ Swap Routing   │ │
-│  │ Swap Execute │  │ Monitoring  │  │ x402 Payments │ │
-│  │ DeFi Yield   │  │ Agent Loop  │  │ Agent Patterns│ │
-│  │ Portfolio    │  │ x402 Pay    │  │ Fee Harvesting│ │
+│  │ Security     │  │ Risk Gates  │  │ Trading API   │ │
+│  │ Market Data  │  │ Monitoring  │  │ Swap Routing   │ │
+│  │ Swap Execute │  │ Agent Loop  │  │ x402 Payments │ │
+│  │ DeFi Yield   │  │ x402 Pay    │  │ Agent Patterns│ │
+│  │ Portfolio    │  │ All 30+ CLI │  │ Fee Harvesting│ │
 │  └──────┬───────┘  └──────┬──────┘  └──────┬───────┘ │
 │         │                 │                 │         │
 │         └────────┬───────┴─────────┬───────┘         │
@@ -105,33 +82,19 @@ Direct Uniswap protocol interaction for autonomous agents — V3 concentrated li
          └────────────────────────────────────────┘
 ```
 
-**Skill interoperability:**
-- `okx-trading` provides research, security, and execution primitives that the other skills reference
-- `okx-xlayer-agent` orchestrates automation loops using `okx-trading` commands
-- `okx-uniswap` extends swap execution with direct Uniswap protocol access and V3 LP management
-- All three skills share the same preflight, chain support, and native token references
-
-## Hackathon Prize Targets
-
-| Prize | Skills | Rationale |
-|---|---|---|
-| **Skills Arena — 1st Prize** | All three | Most comprehensive, well-documented, and immediately usable skill suite |
-| **Most Active Agent** | `okx-xlayer-agent` | Framework for 24/7 autonomous agent with configurable risk gates and tx logging |
-| **Best Uniswap Integration** | `okx-uniswap` | Full Trading API integration, V3 LP lifecycle, x402 payments, route comparison, LP agent patterns |
+Each skill is fully self-contained with its own reference files, shared files, and agent config — no cross-skill dependencies.
 
 ## Quick Start
 
 ### Install OnchainOS
 
 ```bash
-# Required for all three skills
 curl -fsSL https://raw.githubusercontent.com/okx/plugin-store/main/install-local.sh | bash
 ```
 
-### Install Foundry (for Uniswap direct contract calls)
+### Install Foundry (for Uniswap V3 LP management)
 
 ```bash
-# Required for okx-uniswap V3 LP management
 curl -L https://foundry.paradigm.xyz | bash && foundryup
 ```
 
@@ -191,80 +154,40 @@ These economics make X Layer uniquely suited for autonomous agent strategies —
 ```
 skills/
 ├── okx-trading/                    # Comprehensive on-chain trading (27 files)
-│   ├── SKILL.md                    # Main skill definition (297 lines)
-│   ├── agents/openai.yaml          # OpenAI agent config
-│   ├── _shared/
-│   │   ├── preflight.md            # Authentication & preflight checks
-│   │   ├── chain-support.md         # Chain names ↔ IDs
-│   │   └── native-tokens.md        # Native token addresses per chain
-│   └── references/
-│       ├── workflow-buy.md          # Buy workflow (step-by-step)
-│       ├── workflow-sell.md         # Sell workflow
-│       ├── workflow-research.md     # Research & analysis workflow
-│       ├── workflow-defi-yield.md   # DeFi yield workflow
-│       ├── workflow-meme-trading.md # Meme token trenches workflow
-│       ├── risk-framework.md        # Security & risk assessment
-│       ├── trading-strategies.md    # Position sizing, DCA, scaling
-│       ├── risk-management.md       # Portfolio protection, IL, emergency
-│       ├── market-analysis.md       # Token evaluation frameworks
-│       ├── decision-framework.md    # Pre-trade checklists
-│       ├── xlayer-strategies.md     # Zero-gas & fast-finality strategies
-│       ├── agent-automation.md       # Agent decision logic & loops
-│       ├── uniswap-integration.md   # V3 LP + OnchainOS combination guide
-│       ├── authentication.md        # Wallet auth reference
-│       ├── troubleshooting.md        # Error codes & edge cases
-│       ├── keyword-glossary.md      # Chinese keyword mapping
-│       ├── ws-monitoring.md         # WebSocket real-time monitoring
-│       ├── cli-reference-market.md  # Market & portfolio commands
-│       ├── cli-reference-swap.md    # Swap & gateway commands
-│       ├── cli-reference-security.md # Security scan commands
-│       ├── cli-reference-signal.md  # Signal & tracking commands
-│       └── cli-reference-defi.md    # DeFi & wallet commands
+│   ├── SKILL.md
+│   ├── agents/openai.yaml
+│   ├── _shared/                     # preflight, chain-support, native-tokens
+│   └── references/                  # workflows, CLI refs, risk, strategies, etc.
 │
-├── okx-xlayer-agent/               # Autonomous agent on X Layer (5 files)
-│   ├── SKILL.md                    # Main skill definition (194 lines)
-│   ├── agents/openai.yaml          # OpenAI agent config
-│   ├── _shared/
-│   │   ├── preflight.md
-│   │   └── chain-support.md
-│   └── references/
-│       └── agent-automation.md     # Agent patterns, risk gates, silent mode
+├── okx-xlayer-agent/               # Autonomous agent on X Layer (18 files, standalone)
+│   ├── SKILL.md
+│   ├── agents/openai.yaml
+│   ├── _shared/                     # preflight, chain-support, native-tokens
+│   └── references/                  # automation, risk, strategies, workflows, etc.
 │
-└── okx-uniswap/                    # Uniswap protocol for agents (13 files)
-    ├── SKILL.md                    # Main skill definition (301 lines)
-    ├── agents/openai.yaml          # OpenAI agent config
-    ├── _shared/
-    │   ├── preflight.md
-    │   ├── chain-support.md
-    │   └── native-tokens.md
-    └── references/
-        ├── trading-api.md          # Uniswap Trading API full reference
-        ├── liquidity-management.md  # V3 LP position lifecycle
-        ├── x402-payments.md         # x402/MPP payment handling
-        ├── agent-uniswap-patterns.md # 5 agent automation patterns
-        ├── trading-strategies.md    # Position sizing, DCA, scaling
-        ├── risk-management.md       # Portfolio protection
-        ├── xlayer-strategies.md     # X Layer zero-gas strategies
-        └── keyword-glossary.md      # Chinese keyword mapping
+└── okx-uniswap/                    # Uniswap protocol for agents (13 files, standalone)
+    ├── SKILL.md
+    ├── agents/openai.yaml
+    ├── _shared/                     # preflight, chain-support, native-tokens
+    └── references/                  # trading-api, liquidity, x402, patterns, etc.
 ```
 
-## What Makes This Special
+## Key Differentiators
 
-1. **Three skills, one ecosystem** — each skill works independently but references the others for a complete agent experience
+1. **Each skill is fully independent** — install only the one you need, no cross-skill dependencies
 2. **Built for X Layer** — every strategy and example exploits X Layer's zero-gas, 1-second finality economics
 3. **Security-first** — mandatory `security token-scan` before every swap, risk gates before every agent action
-4. **Best Uniswap Integration** — full Trading API integration, V3 LP lifecycle management, route comparison, x402 payments, and 5 LP agent patterns
-5. **Most Active Agent ready** — configurable agent loops with logging, circuit breakers, and risk limits for 24/7 autonomous operation
-6. **Chinese support** — keyword glossary maps Chinese trading terms to OnchainOS commands
+4. **Full Uniswap integration** — Trading API, V3 LP lifecycle, route comparison, x402 payments, 5 LP agent patterns
+5. **Agent-ready** — configurable loops with circuit breakers, risk limits, and logging for 24/7 autonomous operation
+6. **Chinese language support** — keyword glossary maps Chinese trading terms to OnchainOS commands
 7. **Progressive disclosure** — SKILL.md under 300 lines for quick start, detailed references loaded on demand
-8. **Battle-tested workflows** — buy, sell, research, DeFi yield, and meme trading all have step-by-step guides with decision gates
+8. **Battle-tested workflows** — buy, sell, research, DeFi yield, and meme trading all have step-by-step guides
 
 ## Resources
 
 - [OKX OnchainOS](https://github.com/okx/onchainos-skills) — CLI tool powering all on-chain operations
 - [X Layer Docs](https://docs.xlayer.io/) — X Layer documentation
 - [Uniswap AI Tools](https://github.com/Uniswap/uniswap-ai) — Uniswap AI skill reference
-- [Hackathon Page](https://web3.okx.com/xlayer/build-x-hackathon) — Build X Hackathon details
 
 ## License
 

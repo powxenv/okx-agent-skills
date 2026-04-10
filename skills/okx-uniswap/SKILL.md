@@ -299,4 +299,4 @@ Finding correct addresses:
 | Chain support | `_shared/chain-support.md` |
 | Native tokens | `_shared/native-tokens.md` |
 
-For the full trading skill with security scanning, market data, and 30+ CLI commands, load the `okx-trading` skill.
+Use `onchainos` commands for security scanning, market data, and best-price swap routing.

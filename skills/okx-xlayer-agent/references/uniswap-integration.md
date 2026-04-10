@@ -1,6 +1,6 @@
 # Uniswap Integration Guide
 
-> For V3 LP management, Trading API swaps, and agent patterns, see the detailed strategies in sections 3–5 below.
+> **For full Uniswap protocol integration, load the dedicated `okx-uniswap` skill.** This reference provides a brief overview of how OKX OnchainOS and Uniswap complement each other.
 
 ## OnchainOS vs Uniswap: Complementary Roles
 
