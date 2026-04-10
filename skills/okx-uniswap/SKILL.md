@@ -12,6 +12,12 @@ metadata:
 
 Direct Uniswap protocol integration for autonomous trading agents — swaps, concentrated liquidity, and x402 payments. Combines OKX OnchainOS research and security with Uniswap's V3/V4 protocol capabilities.
 
+## Prerequisites
+
+- **OnchainOS CLI** (`onchainos`): Required for all market data, security, and swap operations. Install: `curl -fsSL https://raw.githubusercontent.com/okx/plugin-store/main/install-local.sh | bash`
+- **Foundry** (`cast`): Required for V3 LP management (reading pool state, mint/rebalance/collect positions). Install: `curl -L https://foundry.paradigm.xyz | bash && foundryup`. Not needed if you only use the Trading API or OKX aggregator for swaps.
+- **Uniswap API Key**: Required for Trading API operations. Get one at [developers.uniswap.org](https://developers.uniswap.org/). Not needed for OKX aggregator swaps or direct contract interaction.
+
 ## Pre-flight Checks
 
 > Read `_shared/preflight.md` before the first `onchainos` command each session.

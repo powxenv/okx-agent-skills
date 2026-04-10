@@ -2,6 +2,8 @@
 
 > Load this file when managing Uniswap V3 LP positions — mint, rebalance, collect fees, or withdraw.
 
+> **Prerequisite**: This reference uses `cast` (Foundry) for on-chain contract calls. Install Foundry first: `curl -L https://foundry.paradigm.xyz | bash && foundryup`
+
 ## Core Concepts
 
 ### Tick Math

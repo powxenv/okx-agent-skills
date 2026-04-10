@@ -2,6 +2,8 @@
 
 > Load this file when building autonomous agent strategies that interact with Uniswap on X Layer.
 
+> **Prerequisite**: Agent patterns that use `cast` require Foundry installed: `curl -L https://foundry.paradigm.xyz | bash && foundryup`
+
 ## Architecture
 
 ```
