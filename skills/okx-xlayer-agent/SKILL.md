@@ -249,7 +249,7 @@ Full agent automation guide: `references/agent-automation.md`
 
 ## Agent Configuration
 
-Before running in autonomous mode, define these parameters:
+Before running in autonomous mode, define these parameters. Store them in your agent's own config — each platform persists differently (OpenClaw config, Hermes agent file, Claude Code settings, env vars, database, etc.). The skills don't persist state between sessions — the agent must manage its own config.
 
 ```yaml
 risk_per_trade_pct: 1.0

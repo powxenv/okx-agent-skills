@@ -277,11 +277,18 @@ Three modes of operation:
 Before enabling auto-trading, the user MUST define:
 
 ```yaml
+# Store in your agent's config — each platform persists differently:
+#   OpenClaw: ~/.openclaw/config.yaml or project .env
+#   Hermes Agent: agent config file or environment variables
+#   Claude Code: project CLAUDE.md or .claude/settings.json
+#   Custom scripts: YAML/JSON config, env vars, or database
+# The skills don't persist state — the agent manages its own config.
 risk_per_trade_pct: 1.0        # Max % risked per trade (0.5% for memes)
 max_portfolio_heat_pct: 6.0    # Max total open risk
 max_daily_trades: 10           # Max trades per day
 max_daily_loss_pct: 5.0        # Halt for 24h if exceeded
 stop_loss_pct: 5.0             # Auto stop-loss
+take_profit_pct: 10.0          # Auto take-profit
 auto_mode: manual               # manual | semi-auto | full-auto
 ```
 

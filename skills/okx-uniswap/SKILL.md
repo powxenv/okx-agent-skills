@@ -324,6 +324,8 @@ Finding correct addresses:
 
 **Never enable automated trading without explicit user consent.** Always ask before setting up LP rebalancing loops, auto-compounding, or any auto-execution.
 
+Config is the agent's responsibility — each platform stores it differently (OpenClaw config, Hermes agent file, Claude Code settings, env vars, database, etc.). The skills don't persist state between sessions.
+
 Three modes:
 
 | Mode | Behavior | When to Use |

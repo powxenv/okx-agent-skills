@@ -205,6 +205,13 @@ Before enabling auto-trading, confirm these parameters with the user:
 
 ```yaml
 # The agent MUST respect these limits at all times
+# Store these in whatever way your agent platform supports:
+#   - OpenClaw: ~/.openclaw/config.yaml or project .env
+#   - Hermes Agent: agent config file or environment variables
+#   - Claude Code: project CLAUDE.md or .claude/settings.json
+#   - Custom scripts: YAML/JSON config file, env vars, or database
+# Each agent stores and reads these from its own memory/storage. The skills
+# themselves do not persist state — the agent must manage its own config.
 risk_per_trade_pct: 1.0        # Max % of portfolio risked per trade (0.5% for meme tokens)
 max_portfolio_heat_pct: 6.0    # Max total open risk across all positions
 max_single_position_pct: 10.0  # Max % of portfolio in one asset
