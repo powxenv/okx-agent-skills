@@ -52,18 +52,38 @@ Install OnchainOS (required for all three skills):
 curl -fsSL https://raw.githubusercontent.com/okx/plugin-store/main/install-local.sh | bash
 ```
 
-Install Foundry (only needed for Uniswap V3 LP management in `okx-uniswap`):
+Install Foundry (only needed for V3 LP management in `okx-uniswap`):
 
 ```bash
 curl -L https://foundry.paradigm.xyz | bash && foundryup
 ```
 
-Authenticate:
+Set up wallet authentication:
 
 ```bash
-onchainos wallet login <email>
-onchainos wallet verify <code>
+# Step 1: Check if already logged in
 onchainos wallet status
+
+# Step 2: Login with email (ask user for their email)
+onchainos wallet login <email> --locale en-US
+
+# Step 3: The command will send an OTP to the email.
+# Ask the user for the code, then verify:
+onchainos wallet verify <code>
+
+# Step 4: Confirm it worked
+onchainos wallet status
+# → Should show "Ready: true"
+
+# Step 5: Get your wallet addresses
+onchainos wallet addresses
+# → Use the XLayer address for X Layer operations
+```
+
+For Uniswap Trading API (`okx-uniswap` only), get an API key at [developers.uniswap.org/dashboard](https://developers.uniswap.org/dashboard) and set it:
+
+```bash
+export UNISWAP_API_KEY=your_api_key_here
 ```
 
 Research → scan → buy:

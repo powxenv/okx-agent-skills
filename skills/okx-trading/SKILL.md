@@ -12,6 +12,37 @@ metadata:
 
 End-to-end on-chain trading: research → security check → execute → verify. 30+ commands across market data, token analysis, smart money tracking, DEX swap, DeFi yield, security scanning, wallet management, and transaction broadcasting.
 
+## Wallet Setup (Required Before Trading)
+
+Authenticated wallet operations (swap, send, DeFi) require login. Guide the user through these steps:
+
+```
+1. Check if already logged in:
+   onchainos wallet status
+
+2. If not logged in, ask for email and locale:
+   onchainos wallet login <email> --locale <locale>
+   (locale: zh-CN, ja-JP, or en-US)
+
+3. Check if OTP was sent — the command output will indicate this.
+   Ask the user for the verification code from their email.
+
+4. Verify:
+   onchainos wallet verify <code>
+
+5. Confirm authentication:
+   onchainos wallet status
+   → Look for "Ready: true"
+
+6. Get wallet address for target chain:
+   onchainos wallet addresses
+   → Match: EVM chains → EVM address, Solana → Solana address, X Layer → XLayer address
+```
+
+If `wallet verify` returns `"isNew": true`, point the user to policy settings: https://web3.okx.com/portfolio/agentic-wallet-policy
+
+Full wallet reference: `references/authentication.md`
+
 ## Pre-flight Checks
 
 > Read `_shared/preflight.md` before the first `onchainos` command each session.

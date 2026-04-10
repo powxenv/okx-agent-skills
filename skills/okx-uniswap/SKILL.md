@@ -16,7 +16,38 @@ Direct Uniswap protocol integration for autonomous trading agents — swaps, con
 
 - **OnchainOS CLI** (`onchainos`): Required for all market data, security, and swap operations. Install: `curl -fsSL https://raw.githubusercontent.com/okx/plugin-store/main/install-local.sh | bash`
 - **Foundry** (`cast`): Required for V3 LP management (reading pool state, mint/rebalance/collect positions). Install: `curl -L https://foundry.paradigm.xyz | bash && foundryup`. Not needed if you only use the Trading API or OKX aggregator for swaps.
-- **Uniswap API Key**: Required for Trading API operations. Get one at [developers.uniswap.org](https://developers.uniswap.org/). Not needed for OKX aggregator swaps or direct contract interaction.
+- **Uniswap API Key**: Required for Trading API operations. Get one at [developers.uniswap.org/dashboard](https://developers.uniswap.org/dashboard). Set as `UNISWAP_API_KEY` environment variable. Not needed for OKX aggregator swaps or direct contract interaction.
+
+## Wallet Setup (Required for Authenticated Operations)
+
+Authenticated wallet operations (swap, send, DeFi) require login. Guide the user through these steps:
+
+```
+1. Check if already logged in:
+   onchainos wallet status
+
+2. If not logged in, ask for email and locale:
+   onchainos wallet login <email> --locale <locale>
+   (locale: zh-CN, ja-JP, or en-US)
+
+3. Check if OTP was sent — the command output will indicate this.
+   Ask the user for the verification code from their email.
+
+4. Verify:
+   onchainos wallet verify <code>
+
+5. Confirm authentication:
+   onchainos wallet status
+   → Look for "Ready: true"
+
+6. Get wallet address for target chain:
+   onchainos wallet addresses
+   → Match: EVM chains → EVM address, X Layer → XLayer address
+```
+
+If `wallet verify` returns `"isNew": true`, point the user to policy settings: https://web3.okx.com/portfolio/agentic-wallet-policy
+
+For Foundry wallet setup (direct contract calls), set `PRIVATE_KEY` or use `cast wallet import` with an encrypted keystore — never hardcode private keys.
 
 ## Pre-flight Checks
 

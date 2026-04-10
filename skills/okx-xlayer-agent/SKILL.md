@@ -12,6 +12,37 @@ metadata:
 
 Autonomous agent operations on X Layer — build, trade, earn, and compete. X Layer offers near-zero gas (~$0.0005/tx), 1-second finality, and EVM equivalence, making it the ideal chain for autonomous agents.
 
+## Wallet Setup (Required Before Trading)
+
+Authenticated wallet operations (swap, send, DeFi) require login. Guide the user through these steps:
+
+```
+1. Check if already logged in:
+   onchainos wallet status
+
+2. If not logged in, ask for email and locale:
+   onchainos wallet login <email> --locale <locale>
+   (locale: zh-CN, ja-JP, or en-US)
+
+3. Check if OTP was sent — the command output will indicate this.
+   Ask the user for the verification code from their email.
+
+4. Verify:
+   onchainos wallet verify <code>
+
+5. Confirm authentication:
+   onchainos wallet status
+   → Look for "Ready: true"
+
+6. Get wallet address for X Layer:
+   onchainos wallet addresses
+   → Use the XLayer address for all X Layer operations
+```
+
+If `wallet verify` returns `"isNew": true`, point the user to policy settings: https://web3.okx.com/portfolio/agentic-wallet-policy
+
+Full wallet reference: `references/authentication.md`
+
 ## Pre-flight Checks
 
 > Read `_shared/preflight.md` before the first `onchainos` command each session.

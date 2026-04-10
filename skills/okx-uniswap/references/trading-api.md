@@ -17,7 +17,7 @@ x-api-key: <your-api-key>
 x-universal-router-version: 2.0
 ```
 
-Get an API key at [developers.uniswap.org](https://developers.uniswap.org/)
+Get an API key at [developers.uniswap.org/dashboard](https://developers.uniswap.org/dashboard)
 
 ## Supported Chains
 
