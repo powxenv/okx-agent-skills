@@ -84,6 +84,19 @@ Direct Uniswap protocol integration for agents — V3 concentrated liquidity, Tr
 
 **Prerequisites**: OnchainOS CLI for all operations. Foundry (`cast`) for V3 LP management. Uniswap API key ([developers.uniswap.org/dashboard](https://developers.uniswap.org/dashboard)) for Trading API.
 
+## Autonomous Trading
+
+These skills support always-on trading agents, but **automated trading must never be enabled without explicit user consent.** Each skill enforces hard limits that cannot be overridden:
+
+- Security scan returns `isHoneyPot=true` or `action="block"` → **stop, no trade, no override**
+- Daily loss exceeds 5% of portfolio → **halt for 24 hours, notify user**
+- Price impact > 10% → **block the trade**
+- 3 consecutive failed trades → **halt and notify**
+
+Three operating modes: **Manual** (every trade needs approval, default), **Semi-auto** (low-risk trades auto-execute), **Full-auto** (all trades execute within limits). Always start in manual mode and upgrade gradually.
+
+See `INSTALL.md` for the full setup guide, including agent platform configurations for OpenClaw, Hermes Agent, and similar systems.
+
 ## Why X Layer
 
 X Layer makes agent strategies viable that would be impractical on Ethereum:

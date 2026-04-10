@@ -260,6 +260,50 @@ Never guess or hardcode contract addresses — same symbol has different address
 
 Error codes `50125` or `80001` → display: "Service is not available in your region. Please switch to a supported region and try again." Never show raw error codes.
 
+## Autonomous Trading
+
+**Never enable automated trading without explicit user consent.** Always ask the user before setting up loops, silent mode, or any auto-execution.
+
+Three modes of operation:
+
+| Mode | Behavior | When to Use |
+|---|---|---|
+| **Manual** (default) | Every trade requires user approval | Learning, testing, cautious trading |
+| **Semi-auto** | Low-risk trades auto-execute; high-risk need approval | User trusts agent on small trades |
+| **Full-auto** | All trades execute within risk limits | Experienced user with strict risk config |
+
+### Mandatory Safeguards for Any Auto Mode
+
+Before enabling auto-trading, the user MUST define:
+
+```yaml
+risk_per_trade_pct: 1.0        # Max % risked per trade (0.5% for memes)
+max_portfolio_heat_pct: 6.0    # Max total open risk
+max_daily_trades: 10           # Max trades per day
+max_daily_loss_pct: 5.0        # Halt for 24h if exceeded
+stop_loss_pct: 5.0             # Auto stop-loss
+auto_mode: manual               # manual | semi-auto | full-auto
+```
+
+### Hard Limits (No Override)
+
+- `isHoneyPot=true` or `action="block"` → **STOP. No trade. No override.**
+- Daily loss > 5% of portfolio → **Halt 24 hours. Notify user.**
+- Price impact > 10% → **Block the trade.**
+- Position would exceed 6% portfolio heat → **Skip.**
+
+### Always-On Agent Setup
+
+For continuously running agents (OpenClaw, Hermes Agent, Claude Code in loop mode):
+
+1. **Start in manual mode.** Observe decisions before enabling auto.
+2. **Upgrade gradually.** Manual → semi-auto → full-auto, only after confirming correctness.
+3. **Check auth each loop.** `onchainos wallet status` — sessions expire, re-authenticate or pause.
+4. **Log every action.** Timestamp, pair, amount, slippage, txHash, status, reasoning, portfolio heat.
+5. **Keep kill switch accessible.** User must be able to stop the agent at any time.
+
+Full agent automation guide: `references/agent-automation.md`
+
 ## Cross-Workflow Connections
 
 | After | Suggest |

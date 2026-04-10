@@ -320,6 +320,38 @@ Finding correct addresses:
 3. 1-second finality enables real-time strategies
 4. OKB is the native gas token — ensure agent wallets hold OKB
 
+## Autonomous Trading
+
+**Never enable automated trading without explicit user consent.** Always ask before setting up LP rebalancing loops, auto-compounding, or any auto-execution.
+
+Three modes:
+
+| Mode | Behavior | When to Use |
+|---|---|---|
+| **Manual** (default) | Every position change requires user approval | Opening first LP position, testing strategies |
+| **Semi-auto** | Fee collection and rebalancing auto-execute; opening new positions needs approval | User trusts agent on routine operations |
+| **Full-auto** | All operations execute within risk limits | Experienced user with strict risk config |
+
+### Hard Limits for Auto-Rebalancing (No Override)
+
+- `isHoneyPot=true` or `action="block"` → **STOP. No interaction.**
+- Daily loss > 5% of portfolio → **Halt 24 hours.**
+- Position IL exceeds threshold → **Notify user before rebalancing.**
+- Failed rebalance > 3 consecutive attempts → **Halt and notify.**
+
+### Always-On LP Agent Setup
+
+For continuously running agents (OpenClaw, Hermes Agent, Claude Code in loop mode):
+
+1. **Start in manual mode.** Open and manage one LP position manually first. Understand IL and fee dynamics.
+2. **Upgrade gradually.** Only enable auto-rebalancing after confirming position tracking works correctly.
+3. **Check auth each loop.** `onchainos wallet status` — sessions expire. For V3 contract calls, verify `cast` can connect to RPC.
+4. **Log every action.** Timestamp, operation, tick range, amounts, gas cost, fees earned, IL estimate.
+5. **Keep kill switch accessible.** User must be able to stop the agent at any time.
+6. **Monitor positions.** Check `slot0` every loop iteration to detect out-of-range positions quickly.
+
+Full agent patterns: `references/agent-uniswap-patterns.md`
+
 ## Additional Resources
 
 | Topic | File |

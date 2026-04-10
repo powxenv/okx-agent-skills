@@ -214,6 +214,39 @@ Every autonomous trade MUST pass through these gates in order:
 - **Auto-compounding is profitable**: even $0.01 rewards are worth claiming when gas is ~$0.001
 - **Frequent rebalancing**: portfolio rebalancing costs ~$0.002 per cycle — viable to rebalance hourly
 
+## Autonomous Trading
+
+**Never enable automated trading without explicit user consent.** Always ask before setting up loops, silent mode, or auto-execution.
+
+Three modes:
+
+| Mode | Behavior | When to Use |
+|---|---|---|
+| **Manual** (default) | Every trade requires user approval | Learning, testing, cautious trading |
+| **Semi-auto** | Low-risk trades auto-execute; high-risk need approval | User trusts agent on small trades |
+| **Full-auto** | All trades execute within risk limits | Experienced user with strict risk config |
+
+### Hard Limits (No Override, Any Mode)
+
+- `isHoneyPot=true` or `action="block"` → **STOP. No trade.**
+- Daily loss > 5% of portfolio → **Halt 24 hours. Notify user.**
+- Price impact > 10% → **Block the trade.**
+- Position would exceed 6% portfolio heat → **Skip.**
+- 3 consecutive failed trades → **Halt and notify.**
+
+### Always-On Agent Setup
+
+For continuously running agents (OpenClaw, Hermes Agent, Claude Code in loop mode):
+
+1. **Start in manual mode.** Observe decisions for several sessions before enabling auto.
+2. **Upgrade gradually.** Manual → semi-auto → full-auto, only after confirming correctness.
+3. **Check auth each loop.** `onchainos wallet status` — sessions expire, re-authenticate or pause.
+4. **Log every action.** Timestamp, pair, amount, slippage, txHash, status, reasoning, portfolio heat.
+5. **Keep kill switch accessible.** User must be able to stop the agent at any time.
+6. **Circuit breakers.** Daily loss > 5% or 3 consecutive failures → automatic halt.
+
+Full agent automation guide: `references/agent-automation.md`
+
 ## Agent Configuration
 
 Before running in autonomous mode, define these parameters:
