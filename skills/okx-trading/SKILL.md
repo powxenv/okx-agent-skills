@@ -243,6 +243,26 @@ Error codes `50125` or `80001` → display: "Service is not available in your re
 | DeFi product found | Check APY/TVL trends → deposit |
 | DeFi position viewed | Claim rewards → withdraw or add more |
 
+## Best Practices & Decision Guidance
+
+Beyond the technical CLI workflows, use these references when the user needs help with trading strategy, risk management, market analysis, or decision-making:
+
+| When to Load | Reference | Purpose |
+|---|---|---|
+| "Should I buy this?" / "Is this a good trade?" | `references/decision-framework.md` | Pre-trade checklist, token scorecard, entry/exit matrices |
+| "How much should I risk?" / Position sizing | `references/trading-strategies.md` | Position sizing rules, entry/exit strategies, DCA, scaling |
+| "How do I manage risk?" / Portfolio protection | `references/risk-management.md` | Risk categories, portfolio limits, IL management, emergency procedures |
+| "How do I analyze this token?" / Market signals | `references/market-analysis.md` | Token evaluation framework, on-chain methods, smart money interpretation |
+
+### Quick Decision Rules
+
+- **Security scan is MANDATORY before every swap** — no exceptions
+- **Never risk > 2% of portfolio on a single trade** (0.5% for meme tokens)
+- **Total portfolio heat ≤ 6%** across all open positions
+- **APY > 50% in DeFi** → MUST warn about elevated risk
+- **Liquidity < $10K** → WARN about high slippage risk
+- **Price impact > 5%** on quote → WARN before confirming
+
 ## Additional Resources
 
 | Topic | File |
@@ -253,6 +273,10 @@ Error codes `50125` or `80001` → display: "Service is not available in your re
 | DeFi yield workflow | `references/workflow-defi-yield.md` |
 | Meme trading workflow | `references/workflow-meme-trading.md` |
 | Risk assessment framework | `references/risk-framework.md` |
+| Trading strategies & position sizing | `references/trading-strategies.md` |
+| Risk management & portfolio protection | `references/risk-management.md` |
+| Market analysis & token evaluation | `references/market-analysis.md` |
+| Decision framework & checklists | `references/decision-framework.md` |
 | Authentication & wallet reference | `references/authentication.md` |
 | Troubleshooting & edge cases | `references/troubleshooting.md` |
 | WebSocket real-time monitoring | `references/ws-monitoring.md` |
